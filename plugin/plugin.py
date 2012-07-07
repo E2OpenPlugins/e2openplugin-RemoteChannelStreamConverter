@@ -200,7 +200,7 @@ class StreamingChannelFromServerScreen(Screen):
 			"red": self.close,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
-			"blue": self.keyBleu
+			"blue": self.keyBlue
 		}, -1)
 
 	def keyOk(self):
@@ -209,11 +209,14 @@ class StreamingChannelFromServerScreen(Screen):
 		if self.readIndex > 0:
 			self.list.toggleSelection()
 
-	def keyBleu(self):
+	def keyBlue(self):
 		if not self.hasFiles or self.working:
 			return
 		if self.readIndex > 0:
-			self.list.toggleAllSelection()
+			try:
+				self.list.toggleAllSelection()
+			except AttributeError:
+				self.list.toggleSelection()
 
 	def keyYellow(self):
 		if not self.hasFiles:
