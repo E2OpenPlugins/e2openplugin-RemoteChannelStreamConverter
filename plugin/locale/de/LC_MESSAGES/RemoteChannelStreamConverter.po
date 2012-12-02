@@ -136,7 +136,7 @@ msgstr "Keine Favoritenlisten ausgewählt"
 
 #: ../../../plugin.py:566 ../../../plugin.py:571
 msgid "Remote channel stream converter"
-msgstr "Konvertiere Kanallisten einer entfernten STB"
+msgstr "Importiere externe Bouquets"
 
 #: ../../../plugin.py:571
 msgid "Convert remote channel list for streaming"
