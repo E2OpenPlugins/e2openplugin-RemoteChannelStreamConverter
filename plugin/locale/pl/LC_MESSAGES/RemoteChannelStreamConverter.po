@@ -91,7 +91,7 @@ msgid "Select bouquets to convert"
 msgstr "Wybierz bukiety do skonwertowania"
 
 msgid "Set server IP"
-msgstr "Ustaw IP serwera"
+msgstr "IP serwera"
 
 msgid "Telnetport:"
 msgstr "Port telnet:"
