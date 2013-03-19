@@ -31,9 +31,8 @@ config.plugins.RemoteStreamConverter.telnetport = ConfigInteger(23, (0, 65535))
 
 
 class ServerEditor(ConfigListScreen, Screen):
-	window_title = _("FTP Server Editor")
 	skin = """
-		<screen position="center,center" size="560,230" title="%s">
+		<screen position="center,center" size="560,230" title="FTP Server Editor">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
@@ -43,7 +42,7 @@ class ServerEditor(ConfigListScreen, Screen):
 			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_blue" render="Label"  position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget name="config" position="10,50" size="550,150" scrollbarMode="showOnDemand" />
-		</screen>""" % (window_title)
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -68,6 +67,7 @@ class ServerEditor(ConfigListScreen, Screen):
 				"blue": self.enterUrl,
 				"yellow": self.switchMode
 			}, -2)
+		self.setTitle(_("FTP Server Editor"))
 
 	def keyUp(self):
 		if self["config"].getCurrentIndex() > 0:
@@ -167,9 +167,8 @@ class ServerEditor(ConfigListScreen, Screen):
 		self.close(True)
 
 class StreamingChannelFromServerScreen(Screen):
-	window_title = _("Select bouquets to convert")
 	skin = """
-		<screen name="StreamingChannelFromServerScreen" position="center,center" size="550,450" title="%s" >
+		<screen name="StreamingChannelFromServerScreen" position="center,center" size="550,450" title="Select bouquets to convert" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -181,7 +180,7 @@ class StreamingChannelFromServerScreen(Screen):
 			<widget name="list" position="5,50" size="540,360" />
 			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
 			<widget source="statusbar" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		</screen>""" % (window_title)
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -206,6 +205,7 @@ class StreamingChannelFromServerScreen(Screen):
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue
 		}, -1)
+		self.setTitle(_("Select bouquets to convert"))
 
 	def keyOk(self):
 		if self.working:
