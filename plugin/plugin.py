@@ -300,7 +300,7 @@ class StreamingChannelFromServerScreen(Screen):
 	def fetchUserBouquetsFinished(self, string):
 		self.readIndex += 1
 		if self.readIndex < len(self.workList):
-			self["statusbar"].setText(_("FTP reading file %d of %d") % (self.readIndex, len(self.workList)))
+			self["statusbar"].setText(_("FTP reading file %d of %d") % (self.readIndex, len(self.workList)-1))
 			self.download(self.workList[self.readIndex]).addCallback(self.fetchUserBouquetsFinished).addErrback(self.fetchUserBouquetsFailed)
 		else:
 			if len(self.workList) > 0:
