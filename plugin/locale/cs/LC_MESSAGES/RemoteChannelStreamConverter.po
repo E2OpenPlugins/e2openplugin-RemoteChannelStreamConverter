@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: .\n"
 "Language: cs\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 msgid "Adress:"
@@ -84,16 +84,16 @@ msgid "Password:"
 msgstr "Heslo :"
 
 msgid "Remote channel stream converter"
-msgstr "Přenos kanálů z jiného přijímače"
+msgstr "Kanály - přenos z jiného přijímače"
 
 msgid "Select a remote server IP first"
 msgstr "Nejprve vyberte vzdálený server"
 
 msgid "Select bouquets to convert"
-msgstr "Vyberte seznam kanálů pro převod"
+msgstr "Kanály pro převod..."
 
 msgid "Set server IP"
-msgstr "Nastavit IP serveru"
+msgstr "IP serveru"
 
 msgid "Telnetport:"
 msgstr "Telnet port :"
