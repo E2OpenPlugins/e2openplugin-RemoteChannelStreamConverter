@@ -1,3 +1,7 @@
+# for localized messages
+import os, re
+from . import _
+
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -15,10 +19,9 @@ from urllib import quote
 
 from FTPDownloader import FTPDownloader
 
-from . import _
-
 DIR_ENIGMA2 = '/etc/enigma2/'
 DIR_TMP = '/tmp/'
+RCSC_PREFIX = 'rcscbouquet.'
 
 config.plugins.RemoteStreamConverter = ConfigSubsection()
 config.plugins.RemoteStreamConverter.address = ConfigText(default = "", fixed_size = False)
@@ -32,7 +35,7 @@ config.plugins.RemoteStreamConverter.telnetport = ConfigInteger(23, (0, 65535))
 
 class ServerEditor(ConfigListScreen, Screen):
 	skin = """
-		<screen position="center,center" size="560,230" title="FTP Server Editor">
+		<screen position="center,center" size="560,230" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
@@ -41,11 +44,12 @@ class ServerEditor(ConfigListScreen, Screen):
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_blue" render="Label"  position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="config" position="10,50" size="550,150" scrollbarMode="showOnDemand" />
+			<widget name="config" position="10,50" size="550,150" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("FTP Server Editor"))
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText("")
@@ -67,7 +71,6 @@ class ServerEditor(ConfigListScreen, Screen):
 				"blue": self.enterUrl,
 				"yellow": self.switchMode
 			}, -2)
-		self.setTitle(_("FTP Server Editor"))
 
 	def keyUp(self):
 		if self["config"].getCurrentIndex() > 0:
@@ -168,7 +171,7 @@ class ServerEditor(ConfigListScreen, Screen):
 
 class StreamingChannelFromServerScreen(Screen):
 	skin = """
-		<screen name="StreamingChannelFromServerScreen" position="center,center" size="550,450" title="Select bouquets to convert" >
+		<screen name="StreamingChannelFromServerScreen" position="center,center" size="550,450" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -184,6 +187,7 @@ class StreamingChannelFromServerScreen(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Select bouquets to convert"))
 		self.session = session
 		self.workList = []
 		self.readIndex = 0
@@ -205,7 +209,6 @@ class StreamingChannelFromServerScreen(Screen):
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue
 		}, -1)
-		self.setTitle(_("Select bouquets to convert"))
 
 	def keyOk(self):
 		if self.working:
@@ -265,18 +268,20 @@ class StreamingChannelFromServerScreen(Screen):
 			self.parseBouqets()
 
 	def parserWork(self, list, name):
-		try:
-			lines = open(name).readlines()
+		file = open(name)
+		lines = file.readlines()
+		file.close()
+		if len(lines) > 0:
 			for line in lines:
-				tmp = line.split('userbouquet.')
-				if len(tmp) > 1:
-					if '\"' in line:
-						tmp2 = tmp[1].split('\"')
-					else:
-						tmp2 = tmp[1].split('\n')
-					list.append(tmp2[0])
-		except:
-			pass
+				if line.startswith('#SERVICE'):
+					line = line.replace('\n', '').replace('\r', '').split()
+					if len(line) > 3 and line[2] == 'BOUQUET' and (line[3].find('.tv') != -1 or line[3].find('.radio')):
+						tmp = line[3].replace('"', '')
+						if len(tmp) > 1:
+							list.append(tmp)
+					elif line[1].find('0:0:0:0:0:0:0:'):
+						tmp = line[1].split('0:0:0:0:0:0:0:')
+						list.append(tmp[1])
 
 	def parseBouqets(self):
 		list = []
@@ -285,7 +290,7 @@ class StreamingChannelFromServerScreen(Screen):
 		self.readIndex = 0
 		self.workList = []
 		for listindex in range(len(list)):
-			self.workList.append('userbouquet.' + list[listindex])
+			self.workList.append(list[listindex])
 		self.workList.append('lamedb')
 		self.download(self.workList[0]).addCallback(self.fetchUserBouquetsFinished).addErrback(self.fetchUserBouquetsFailed)
 
@@ -305,9 +310,16 @@ class StreamingChannelFromServerScreen(Screen):
 		else:
 			if len(self.workList) > 0:
 				self["statusbar"].setText(_("Make your selection"))
+				self.editBouquetNames()
+				bouquetFilesContents = ''
+				for suffix in ['tv', 'radio']:
+					fp = open(DIR_ENIGMA2 + "bouquets." + suffix)
+					bouquetFilesContents += fp.read()
+					fp.close()
 				for listindex in range(len(self.workList) - 1):
+					truefalse = self.workList[listindex] in bouquetFilesContents
 					name = self.readBouquetName(DIR_TMP + self.workList[listindex])
-					self.list.addSelection(name, self.workList[listindex], listindex, False)
+					self.list.addSelection(name, self.workList[listindex], listindex, truefalse)
 				self.removeFiles(DIR_TMP, "bouquets.")
 				self.working = False
 				self.hasFiles = True
@@ -333,22 +345,19 @@ class StreamingChannelFromServerScreen(Screen):
 		while True:
 			if 'lamedb' not in self.workList[self.readIndex]:
 				filename = DIR_TMP + self.workList[self.readIndex]
-				hasRemoteTag = False
-				if self.checkBouquetAllreadyInList(self.workList[self.readIndex], self.workList[self.readIndex]) is True:
-					self.workList[self.readIndex] = self.workList[self.readIndex].replace('userbouquet.', 'userbouquet.remote_')
-					hasRemoteTag = True
-
 				fp = open(DIR_ENIGMA2 + self.workList[self.readIndex], 'w')
 				try:
-					lines = open(filename).readlines()
+					fp2 = open(filename)
+					lines = fp2.readlines()
+					fp2.close()
 					was_html = False
 					for line in lines:
 						if was_html and '#DESCRIPTION' in line:
 							was_html = False
 							continue
-						if '#NAME' in line and hasRemoteTag:
-							hasRemoteTag = False
-							line = line.replace('#NAME ', '#NAME remote_')
+						if '#NAME' in line:
+							txt = _("remote of")
+							line = "%s (%s %s) \n" % (line.rstrip('\n'), txt, self.getRemoteAdress())
 						was_html = False
 						if 'http' in line:
 							was_html = True
@@ -376,11 +385,13 @@ class StreamingChannelFromServerScreen(Screen):
 			self.readIndex += 1
 			if self.readIndex == len(self.workList):
 				break
-		self.removeFiles(DIR_TMP, "userbouquet.")
+		self.removeFilesByPattern(DIR_TMP, "[.](tv|radio)$")
 
 	def getTransponders(self, fp):
 		step = 0
-		lines = open(DIR_TMP + 'lamedb').readlines()
+		fp2 = open(DIR_TMP + 'lamedb')
+		lines = fp2.readlines()
+		fp2.close()
 		for line in lines:
 			if step == 0:
 				if 'transponders' in line:
@@ -394,7 +405,9 @@ class StreamingChannelFromServerScreen(Screen):
 
 	def getServices(self, fp):
 		step = 0
-		lines = open(DIR_TMP + 'lamedb').readlines()
+		fp2 = open(DIR_TMP + 'lamedb')
+		lines = fp2.readlines()
+		fp2.close()
 		for line in lines:
 			if step == 0:
 				if 'services' in line[:8]:
@@ -406,31 +419,21 @@ class StreamingChannelFromServerScreen(Screen):
 				else:
 					fp.write(line)
 
-	def checkBouquetAllreadyInList(self, typestr, item):
-		item = item.replace('userbouquet.', '')
-		list = []
-		if '.tv' in typestr:
-			self.readBouquetList(list, '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		else:
-			self.readBouquetList(list, '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
-		if len(list) > 0:
-			for x in list:
-				if item in x:
-					return True
-		return False
-
 	def createBouquetFile(self, target, source, matchstr, typestr):
 		tmpFile = []
+		prefix = "%s%s." % (RCSC_PREFIX, self.getRemoteAdress().replace('.', '_'))
+		self.removeFiles(DIR_ENIGMA2, prefix)
 		fp = open(target, 'w')
 		try:
-			lines = open(source).readlines()
+			fp2 = open(source)
+			lines = fp2.readlines()
+			fp2.close()
 			for line in lines:
-				tmpFile.append(line)
-				fp.write(line)
+				if prefix not in line:
+					tmpFile.append(line)
+					fp.write(line)
 			for item in self.workList:
 				if typestr in item:
-					if self.checkBouquetAllreadyInList(typestr, item) is True:
-						item = item.replace('userbouquet.', 'userbouquet.remote_')
 					tmp = matchstr + item + '\" ORDER BY bouquet\n'
 					match = False
 					for x in tmpFile:
@@ -458,7 +461,9 @@ class StreamingChannelFromServerScreen(Screen):
 		state = 0
 		fp = open(DIR_TMP + 'tmp_lamedb', 'w')
 		try:
-			lines = open(DIR_ENIGMA2 + 'lamedb').readlines()
+			fp2 = open(DIR_ENIGMA2 + 'lamedb')
+			lines = fp2.readlines()
+			fp2.close()
 			for line in lines:
 				if 'eDVB services' in line:
 					fileValid = True
@@ -516,7 +521,9 @@ class StreamingChannelFromServerScreen(Screen):
 
 	def readBouquetName(self, filename):
 		try:
-			lines = open(filename).readlines()
+			fp = open(filename)
+			lines = fp.readlines()
+			fp.close()
 			for line in lines:
 				if '#NAME' in line:
 					tmp = line.split('#NAME ')
@@ -540,32 +547,51 @@ class StreamingChannelFromServerScreen(Screen):
 						service = servicelist.getNext()
 						if not service.valid():
 							break
-						tmp = service.toString().split('userbouquet.')
-						if len(tmp[1]) > 0:
-							tmp2 = tmp[1].split('\"')
-							name = self.readBouquetName(DIR_ENIGMA2 + 'userbouquet.' + tmp2[0])
-							list.append((name, tmp2[0]))
+						tmp = service.toString()
+						if len(tmp) > 1 and len(tmp[1]) > 0:
+							tmp2 = tmp.split()[2].replace('"','')
+							name = self.readBouquetName(DIR_ENIGMA2 + tmp2)
+							list.append((name, tmp2))
 
 	def removeFiles(self, targetdir, target):
-		import os
 		targetLen = len(target)
 		for root, dirs, files in os.walk(targetdir):
 			for name in files:
 				if target in name[:targetLen]:
 					os.remove(os.path.join(root, name))
 
+	def removeFilesByPattern(self, targetdir, target):
+		for root, dirs, files in os.walk(targetdir):
+			for name in files:
+				if re.search(target, name) is not None:
+					os.remove(os.path.join(root, name))
+
 	def copyFile(self, source, dest):
 		import shutil
 		shutil.copy2(source, dest)
+
+	def editBouquetNames(self):
+		self.removeFiles(DIR_TMP, RCSC_PREFIX)
+		tmp_workList = []
+		for filename in self.workList:
+			if filename.startswith(RCSC_PREFIX):
+				continue
+			if filename == 'lamedb':
+				tmp_workList.append(filename)
+			if filename.endswith('.tv') or filename.endswith('.radio'):
+				newFilename = "%s%s.%s" % (RCSC_PREFIX, self.getRemoteAdress().replace('.', '_'), filename)
+				os.rename(DIR_TMP + filename, DIR_TMP + newFilename)
+				tmp_workList.append(newFilename)
+		self.workList = tmp_workList
 
 def main(session, **kwargs):
 	session.open(StreamingChannelFromServerScreen)
 
 def mainInMenu(menuid, **kwargs):
-	if menuid == "scan":
-		return [(_("Remote channel stream converter"), main, "streamconvert", 99)]
-	else:
-		return []
+		if menuid == "scan":
+			return [(_("Remote channel stream converter"), main, "streamconvert", 99)]
+		else:
+			return []
 
 def Plugins(**kwargs):
 	return [ PluginDescriptor(name = _("Remote channel stream converter"), description = _("Convert remote channel list for streaming"), where = PluginDescriptor.WHERE_MENU, fnc = mainInMenu) ]
