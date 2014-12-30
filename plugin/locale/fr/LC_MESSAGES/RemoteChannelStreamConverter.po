@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: e2openplugin-RemoteChannelStreamConverter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-29 20:32+0100\n"
+"PO-Revision-Date: 2014-12-30 15:48+0100\n"
+"Last-Translator: soupalonion <sabrosa@free.fr>\n"
+"Language-Team: french\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.7.1\n"
+"Language: fr\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../plugin.py:34
+msgid "FTP Server Editor"
+msgstr "Configurer le serveur distant"
+
+#: ../../../plugin.py:50
+msgid "Exit"
+msgstr "Quitter"
+
+#: ../../../plugin.py:51
+msgid "OK"
+msgstr "OK"
+
+#: ../../../plugin.py:94
+msgid "Keyboard"
+msgstr "Clavier"
+
+#: ../../../plugin.py:100
+msgid "Use address"
+msgstr "Utiliser URL"
+
+#: ../../../plugin.py:102
+msgid "Use IP"
+msgstr "Utiliser IP"
+
+#: ../../../plugin.py:108
+msgid "IP:"
+msgstr "IP:"
+
+#: ../../../plugin.py:109 ../../../plugin.py:122
+msgid "Username:"
+msgstr "Nom d'utilisateur:"
+
+#: ../../../plugin.py:110 ../../../plugin.py:123
+msgid "Password:"
+msgstr "Mot de passe:"
+
+#: ../../../plugin.py:111 ../../../plugin.py:124
+msgid "FTPport:"
+msgstr "Port FTP:"
+
+#: ../../../plugin.py:112 ../../../plugin.py:125
+msgid "Passive:"
+msgstr "Mode passif:"
+
+#: ../../../plugin.py:113 ../../../plugin.py:126
+msgid "Telnetport:"
+msgstr "Port Telnet:"
+
+#: ../../../plugin.py:121
+msgid "Adress:"
+msgstr "Adresse:"
+
+#: ../../../plugin.py:141
+msgid "Enter address"
+msgstr "Entrer l'adresse"
+
+#: ../../../plugin.py:144
+msgid "Enter username"
+msgstr "Entrer le nom d'utilisateur"
+
+#: ../../../plugin.py:147
+msgid "Enter password"
+msgstr "Entrer le mot de passe"
+
+#: ../../../plugin.py:170
+msgid "Select bouquets to convert"
+msgstr "Sélectionnez les bouquets à convertir"
+
+#: ../../../plugin.py:195
+msgid "Close"
+msgstr "Fermer"
+
+#: ../../../plugin.py:197
+msgid "Set server IP"
+msgstr "IP du serveur"
+
+#: ../../../plugin.py:199
+msgid "Select a remote server IP first"
+msgstr "Sélectionnez d'abord l'IP du serveur distant"
+
+#: ../../../plugin.py:231
+msgid "Testing remote connection"
+msgstr "Test de la connexion à distance"
+
+#: ../../../plugin.py:240
+msgid "Connection to remote IP ok"
+msgstr "Connexion au serveur distant ok"
+
+#: ../../../plugin.py:246
+msgid "Could not connect to remote IP"
+msgstr "Impossible de se connecter au serveur distant"
+
+#: ../../../plugin.py:249
+msgid "Downloading remote services"
+msgstr "Téléchargement des services distants"
+
+#: ../../../plugin.py:258 ../../../plugin.py:298
+msgid "Download from remote failed"
+msgstr "Echec du téléchargement des services distants"
+
+#: ../../../plugin.py:303
+#, python-format
+msgid "FTP reading file %d of %d"
+msgstr "Lecture du fichier %d sur %d"
+
+#: ../../../plugin.py:307
+msgid "Make your selection"
+msgstr "Faites votre sélection"
+
+#: ../../../plugin.py:314
+msgid "Download"
+msgstr "Télécharger"
+
+#: ../../../plugin.py:315
+msgid "Invert"
+msgstr "Inverser"
+
+#: ../../../plugin.py:453
+msgid "No bouquets selected"
+msgstr "Aucun bouquet sélectionné"
+
+#: ../../../plugin.py:566 ../../../plugin.py:571
+msgid "Remote channel stream converter"
+msgstr "Importation de listes de chaînes à distance"
+
+#: ../../../plugin.py:571
+msgid "Convert remote channel list for streaming"
+msgstr "Converti une liste de chaînes distante en streaming"
