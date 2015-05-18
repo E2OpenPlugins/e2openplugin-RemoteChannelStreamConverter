@@ -21,7 +21,7 @@ from FTPDownloader import FTPDownloader
 
 DIR_ENIGMA2 = '/etc/enigma2/'
 DIR_TMP = '/tmp/'
-RCSC_PREFIX = 'rcscbouquet.'
+RCSC_PREFIX = 'userbouquet.rcsc.'
 
 config.plugins.RemoteStreamConverter = ConfigSubsection()
 config.plugins.RemoteStreamConverter.address = ConfigText(default = "", fixed_size = False)
@@ -275,13 +275,15 @@ class StreamingChannelFromServerScreen(Screen):
 			for line in lines:
 				if line.startswith('#SERVICE'):
 					line = line.replace('\n', '').replace('\r', '').split()
-					if len(line) > 3 and line[2] == 'BOUQUET' and (line[3].find('.tv') != -1 or line[3].find('.radio')):
-						tmp = line[3].replace('"', '')
-						if len(tmp) > 1:
-							list.append(tmp)
-					elif line[1].find('0:0:0:0:0:0:0:'):
-						tmp = line[1].split('0:0:0:0:0:0:0:')
-						list.append(tmp[1])
+					if not int(line[1].split(":")[1]) & eServiceReference.isInvisible:
+						if len(line) > 3 and line[2] == 'BOUQUET' and (line[3].find('.tv') != -1 or line[3].find('.radio')):
+							tmp = line[3].replace('"', '')
+							if len(tmp) > 1 and tmp not in list:
+								list.append(tmp)
+						elif line[1].find('0:0:0:0:0:0:0:'):
+							tmp = line[1].split('0:0:0:0:0:0:0:')
+							if tmp[1] not in list:
+								list.append(tmp[1])
 
 	def parseBouqets(self):
 		list = []
@@ -295,6 +297,7 @@ class StreamingChannelFromServerScreen(Screen):
 		self.download(self.workList[0]).addCallback(self.fetchUserBouquetsFinished).addErrback(self.fetchUserBouquetsFailed)
 
 	def fetchUserBouquetsFailed(self, string):
+		print "string", string
 		if self.readIndex < len(self.workList) and self.readIndex > 0:
 			self.workList.remove(self.workList[self.readIndex])
 			self.readIndex -= 1
@@ -305,10 +308,16 @@ class StreamingChannelFromServerScreen(Screen):
 	def fetchUserBouquetsFinished(self, string):
 		self.readIndex += 1
 		if self.readIndex < len(self.workList):
-			self["statusbar"].setText(_("FTP reading file %d of %d") % (self.readIndex, len(self.workList)-1))
+			self["statusbar"].setText(_("FTP reading bouquets %d of %d") % (self.readIndex, len(self.workList)-1))
 			self.download(self.workList[self.readIndex]).addCallback(self.fetchUserBouquetsFinished).addErrback(self.fetchUserBouquetsFailed)
 		else:
 			if len(self.workList) > 0:
+				# Download alternatives files where services have alternatives
+				self.findAlternatives()
+				self.alternativesCounter = 0
+				if len(self.alternatives) > 0:
+					self.download(self.alternatives[self.alternativesCounter]).addCallback(self.downloadAlternativesCallback).addErrback(self.downloadAlternativesErrback)
+
 				self["statusbar"].setText(_("Make your selection"))
 				self.editBouquetNames()
 				bouquetFilesContents = ''
@@ -363,6 +372,12 @@ class StreamingChannelFromServerScreen(Screen):
 							was_html = True
 							continue
 						elif '#SERVICE' in line:
+							# alternative services that cannot be fed directly into the "play"-handler.
+							if int(line.split()[1].split(":")[1]) & eServiceReference.mustDescent:
+								line = self.getAlternativeLine(line)
+								if line == None:
+									continue
+							# normal services
 							line = line.strip('\r\n')
 							line = line.strip('\n')
 							tmp = line.split('#SERVICE')
@@ -583,6 +598,54 @@ class StreamingChannelFromServerScreen(Screen):
 				os.rename(DIR_TMP + filename, DIR_TMP + newFilename)
 				tmp_workList.append(newFilename)
 		self.workList = tmp_workList
+
+	def findAlternatives(self):
+		self["statusbar"].setText(_("Checking for alternatives"))
+		self.alternatives = []
+		for filename in self.workList:
+			if filename != "lamedb":
+				try:
+					fp = open(DIR_TMP + filename)
+					lines = fp.readlines()
+					fp.close()
+					for line in lines:
+						if '#SERVICE' in line and int(line.split()[1].split(":")[1]) & eServiceReference.mustDescent:
+							if int(line.split()[1].split(":")[1]) & eServiceReference.mustDescent:
+								result = re.match("^.*FROM BOUQUET \"(.+)\" ORDER BY.*$", line) or re.match("[#]SERVICE[:] (?:[0-9a-f]+[:])+([^:]+[.](?:tv|radio))$", line, re.IGNORECASE)
+								if result is None:
+									continue
+								self.alternatives.append(result.group(1))
+				except:
+					pass
+
+	def downloadAlternativesCallback(self, string):
+		self.alternativesCounter += 1
+		if self.alternativesCounter < len(self.alternatives):
+			self["statusbar"].setText(_("FTP reading alternatives %d of %d") % (self.alternativesCounter, len(self.alternatives)-1))
+			self.download(self.alternatives[self.alternativesCounter]).addCallback(self.downloadAlternativesCallback).addErrback(self.downloadAlternativesErrback)
+		else:
+			self["statusbar"].setText(_("Make your selection"))
+
+	def downloadAlternativesErrback(self, string):
+		print "[RCSC] error downloading alternative: '%s', error: %s" % (self.alternatives[self.alternativesCounter], string)
+		self.downloadAlternativesCallback(string)
+
+	def getAlternativeLine(self, line):
+		result = re.match("^.*FROM BOUQUET \"(.+)\" ORDER BY.*$", line) or re.match("[#]SERVICE[:] (?:[0-9a-f]+[:])+([^:]+[.](?:tv|radio))$", line, re.IGNORECASE)
+		if result is None:
+			return None
+		filename = result.group(1)
+		if filename in self.alternatives:
+			try:
+				fp = open(DIR_TMP + filename)
+				lines = fp.readlines()
+				fp.close()
+				for line in lines:
+					if '#SERVICE' in line:
+						return line
+			except:
+				pass
+		return None
 
 def main(session, **kwargs):
 	session.open(StreamingChannelFromServerScreen)
