@@ -393,7 +393,7 @@ class StreamingChannelFromServerScreen(Screen):
 							else:
 								tag = tmp[1][1:-1]
 								service_ref = ServiceReference(tag)
-							out = '#SERVICE ' + tag + ':' + quote('http://' + self.getRemoteAdress() + ':' + config.plugins.RemoteStreamConverter.streamport.value + '/' + tag) + ':' + service_ref.getServiceName() + '\n'
+							out = '#SERVICE ' + tag + ':' + quote('http://' + self.getRemoteAdress() + ':' + str(config.plugins.RemoteStreamConverter.streamport.value) + '/' + tag) + ':' + service_ref.getServiceName() + '\n'
 						else:
 							out = line
 						fp.write(out)
