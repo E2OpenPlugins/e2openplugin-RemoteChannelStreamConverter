@@ -2,110 +2,167 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-07 22:45+0100\n"
+"POT-Creation-Date: 2016-05-06 13:36+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Roxy <vro@wo.cz>\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: Roxy\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: .\n"
-"Language: cs\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-msgid "Adress:"
-msgstr "Adresa :"
-
-msgid "Close"
-msgstr "Zavřít"
-
-msgid "Connection to remote IP ok"
-msgstr "Připojení na vzdálený přijímač je OK"
-
-msgid "Convert remote channel list for streaming"
-msgstr "Převod vzdál.seznamu kanálů pro sdílení"
-
-msgid "Could not connect to remote IP"
-msgstr "Na vzdálený sat.přijímač se nelze připojit !"
-
-msgid "Download"
-msgstr "Stáhnout"
-
-msgid "Download from remote failed"
-msgstr "Stažení seznamu kanálů selhalo !"
-
-msgid "Downloading remote services"
-msgstr "Stahování seznamu kanálů"
-
-msgid "Enter address"
-msgstr "Zadejte adresu"
-
-msgid "Enter password"
-msgstr "Zadejte heslo"
-
-msgid "Enter username"
-msgstr "Zadejte uživatele"
-
-msgid "Exit"
-msgstr "Konec"
-
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:52
 msgid "FTP Server Editor"
 msgstr "Konfigurace FTP serveru"
 
-msgid "FTP reading file %d of %d"
-msgstr "Načtení FTP souboru  %d z  %d"
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:53
+msgid "Exit"
+msgstr "Konec"
 
-msgid "FTPport:"
-msgstr "FTP port :"
-
-msgid "IP:"
-msgstr "IP :"
-
-msgid "Invert"
-msgstr "Invertovat"
-
-msgid "Keyboard"
-msgstr "Klávesnice"
-
-msgid "Make your selection"
-msgstr "Vyberte"
-
-msgid "No bouquets selected"
-msgstr "Není vybraný seznam oblíbených kanálů"
-
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:54
 msgid "OK"
 msgstr "OK"
 
-msgid "Passive:"
-msgstr "Pasivní :"
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:97
+msgid "Keyboard"
+msgstr "Klávesnice"
 
-msgid "Password:"
-msgstr "Heslo :"
-
-msgid "Remote channel stream converter"
-msgstr "Kanály - přenos z jiného přijímače"
-
-msgid "Select a remote server IP first"
-msgstr "Nejprve vyberte vzdálený server"
-
-msgid "Select bouquets to convert"
-msgstr "Kanály pro převod..."
-
-msgid "Set server IP"
-msgstr "IP serveru"
-
-msgid "Telnetport:"
-msgstr "Telnet port :"
-
-msgid "Testing remote connection"
-msgstr "Test vzdáleného připojení"
-
-msgid "Use IP"
-msgstr "Použité IP"
-
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:103
 msgid "Use address"
 msgstr "Adresa"
 
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:105
+msgid "Use IP"
+msgstr "Použité IP"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:111
+msgid "IP:"
+msgstr "IP :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:112
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:125
 msgid "Username:"
 msgstr "Uživatel :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:113
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:126
+msgid "Password:"
+msgstr "Heslo :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:114
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:127
+msgid "FTPport:"
+msgstr "FTP port :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:115
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:128
+msgid "Passive:"
+msgstr "Pasivní :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:116
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:129
+msgid "Telnetport:"
+msgstr "Telnet port :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:124
+msgid "Adress:"
+msgstr "Adresa :"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:144
+msgid "Enter address"
+msgstr "Zadejte adresu"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:147
+msgid "Enter username"
+msgstr "Zadejte uživatele"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:150
+msgid "Enter password"
+msgstr "Zadejte heslo"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:190
+msgid "Select bouquets to convert"
+msgstr "Kanály pro převod..."
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:198
+msgid "Close"
+msgstr "Zavřít"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:200
+msgid "Set server IP"
+msgstr "IP serveru"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:202
+msgid "Select a remote server IP first"
+msgstr "Nejprve vyberte vzdálený server"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:234
+msgid "Testing remote connection"
+msgstr "Test vzdáleného připojení"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:243
+msgid "Connection to remote IP ok"
+msgstr "Připojení na vzdálený přijímač je OK"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:249
+msgid "Could not connect to remote IP"
+msgstr "Na vzdálený sat.přijímač se nelze připojit !"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:252
+msgid "Downloading remote services"
+msgstr "Stahování seznamu kanálů"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:261
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:306
+msgid "Download from remote failed"
+msgstr "Stažení seznamu kanálů selhalo !"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:311
+#, python-format
+msgid "FTP reading bouquets %d of %d"
+msgstr ""
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:321
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:627
+msgid "Make your selection"
+msgstr "Vyberte"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:335
+msgid "Download"
+msgstr "Stáhnout"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:336
+msgid "Invert"
+msgstr "Invertovat"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:368
+msgid "remote of"
+msgstr ""
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:471
+msgid "No bouquets selected"
+msgstr "Není vybraný seznam oblíbených kanálů"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:603
+msgid "Checking for alternatives"
+msgstr ""
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:624
+#, python-format
+msgid "FTP reading alternatives %d of %d"
+msgstr ""
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:655
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:660
+msgid "Remote channel stream converter"
+msgstr "Kanály - přenos z jiného přijímače"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:660
+msgid "Convert remote channel list for streaming"
+msgstr "Převod vzdál.seznamu kanálů pro sdílení"
+
+#~ msgid "FTP reading file %d of %d"
+#~ msgstr "Načtení FTP souboru  %d z  %d"
