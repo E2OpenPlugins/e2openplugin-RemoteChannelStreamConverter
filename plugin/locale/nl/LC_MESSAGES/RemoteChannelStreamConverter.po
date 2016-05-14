@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: .\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Last-Translator: TechNL <tech@openpli.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: nl\n"
 "X-Poedit-SearchPath-0: ../../..\n"
@@ -33,15 +33,15 @@ msgstr "Toetsenbord"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:103
 msgid "Use address"
-msgstr "Gebruik adres"
+msgstr "Gebruik http adres"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:105
 msgid "Use IP"
-msgstr "gebruik IP"
+msgstr "Gebruik IP adres"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:111
 msgid "IP:"
-msgstr "IP:"
+msgstr "IP adres:"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:112
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:125
@@ -74,11 +74,11 @@ msgstr "Adres:"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:144
 msgid "Enter address"
-msgstr "Voer adres in"
+msgstr "Voer een adres in"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:147
 msgid "Enter username"
-msgstr "Voer gebruikersnaam in"
+msgstr "Voer een gebruikersnaam in"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:150
 msgid "Enter password"
@@ -86,7 +86,7 @@ msgstr "Voer uw wachtwoord in"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:190
 msgid "Select bouquets to convert"
-msgstr "Selecteer bouquets om te converteren"
+msgstr "Kies de boeketten welke u wilt importeren........"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:198
 msgid "Close"
@@ -94,23 +94,23 @@ msgstr "Sluiten"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:200
 msgid "Set server IP"
-msgstr "Server IP instellen"
+msgstr "Ontvanger adres instellen"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:202
 msgid "Select a remote server IP first"
-msgstr "Selecteer eerst een extern IP"
+msgstr "Stel eerst het adres van de ontvanger in"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:234
 msgid "Testing remote connection"
-msgstr "Test externe verbinding"
+msgstr "Testen van de verbinding"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:243
 msgid "Connection to remote IP ok"
-msgstr "Verbinding van extern IP is ok"
+msgstr "Verbinding naar het ingestelde adres is in orde"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:249
 msgid "Could not connect to remote IP"
-msgstr "Kon geen verbinding maken met extern IP"
+msgstr "Kon geen verbinding maken met het ingestelde apparaat"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:252
 msgid "Downloading remote services"
@@ -119,25 +119,25 @@ msgstr "Downloaden van externe services"
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:261
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:306
 msgid "Download from remote failed"
-msgstr "Downloaden van externe mislukt"
+msgstr "Downloaden mislukt"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:311
 #, python-format
 msgid "FTP reading bouquets %d of %d"
-msgstr "FTP leest bouquets % d van% d"
+msgstr "Inlezen van boeket % d van% d via FTP"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:321
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:627
 msgid "Make your selection"
-msgstr "Maak uw selectie"
+msgstr "Maak een selectie aub."
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:335
 msgid "Download"
-msgstr "Download"
+msgstr "Ophalen"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:336
 msgid "Invert"
-msgstr "Omgekeerd"
+msgstr "Selectie omkeren"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:368
 msgid "remote of"
@@ -145,7 +145,7 @@ msgstr "extern van"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:471
 msgid "No bouquets selected"
-msgstr "Geen bouquets geselecteerd"
+msgstr "Geen boeket geselecteerd"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:603
 msgid "Checking for alternatives"
@@ -154,7 +154,7 @@ msgstr "Controleren op alternatieven"
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:624
 #, python-format
 msgid "FTP reading alternatives %d of %d"
-msgstr "FTP lezen alternatieven% d of % d"
+msgstr "Inlezen van alternatieven% d of % d via FTP"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:655
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:660
@@ -163,4 +163,4 @@ msgstr "Remote channel stream converter"
 
 #: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:660
 msgid "Convert remote channel list for streaming"
-msgstr "Importeer kanalenlijsten van externe boxen"
+msgstr "Importeer kanalenlijsten van andere enigma2 ontvangers"
