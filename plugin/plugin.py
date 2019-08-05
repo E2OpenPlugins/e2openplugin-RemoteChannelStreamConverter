@@ -31,6 +31,7 @@ config.plugins.RemoteStreamConverter.password = ConfigText(default = "", fixed_s
 config.plugins.RemoteStreamConverter.port = ConfigInteger(21, (0, 65535))
 config.plugins.RemoteStreamConverter.passive = ConfigYesNo(False)
 config.plugins.RemoteStreamConverter.telnetport = ConfigInteger(23, (0, 65535))
+config.plugins.RemoteStreamConverter.streamport = ConfigInteger(8001, (0, 65535))
 
 
 class ServerEditor(ConfigListScreen, Screen):
@@ -114,6 +115,7 @@ class ServerEditor(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("FTPport:"), config.plugins.RemoteStreamConverter.port, False))
 		self.list.append(getConfigListEntry(_("Passive:"), config.plugins.RemoteStreamConverter.passive, False))
 		self.list.append(getConfigListEntry(_("Telnetport:"), config.plugins.RemoteStreamConverter.telnetport, False))
+		self.list.append(getConfigListEntry(_("Streamport:"), config.plugins.RemoteStreamConverter.streamport, False))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		self.isIp = True
@@ -127,6 +129,7 @@ class ServerEditor(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("FTPport:"), config.plugins.RemoteStreamConverter.port, False))
 		self.list.append(getConfigListEntry(_("Passive:"), config.plugins.RemoteStreamConverter.passive, False))
 		self.list.append(getConfigListEntry(_("Telnetport:"), config.plugins.RemoteStreamConverter.telnetport, False))
+		self.list.append(getConfigListEntry(_("Streamport:"), config.plugins.RemoteStreamConverter.streamport, False))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		self.isIp = False
@@ -390,7 +393,7 @@ class StreamingChannelFromServerScreen(Screen):
 							else:
 								tag = tmp[1][1:-1]
 								service_ref = ServiceReference(tag)
-							out = '#SERVICE ' + tag + ':' + quote('http://' + self.getRemoteAdress() + ':8001/' + tag) + ':' + service_ref.getServiceName() + '\n'
+							out = '#SERVICE ' + tag + ':' + quote('http://' + self.getRemoteAdress() + ':' + str(config.plugins.RemoteStreamConverter.streamport.value) + '/' + tag) + ':' + service_ref.getServiceName() + '\n'
 						else:
 							out = line
 						fp.write(out)
