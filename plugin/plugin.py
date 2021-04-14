@@ -1,5 +1,6 @@
 # for localized messages
-import os, re
+import os
+import re
 from . import _
 
 from Plugins.Plugin import PluginDescriptor
