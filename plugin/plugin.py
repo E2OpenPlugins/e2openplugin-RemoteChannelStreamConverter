@@ -1,6 +1,7 @@
 # for localized messages
 import os
 import re
+import six
 from . import _
 
 from Plugins.Plugin import PluginDescriptor
@@ -16,9 +17,14 @@ from ServiceReference import ServiceReference
 from twisted.internet import reactor
 from twisted.internet.protocol import ClientCreator
 from twisted.protocols.ftp import FTPClient
-from urllib import quote
 
-from FTPDownloader import FTPDownloader
+if six.PY2:
+	from urllib import quote
+	from FTPDownloader import FTPDownloader
+else:
+	from urllib.parse import quote
+	from .FTPDownloader import FTPDownloader
+
 
 DIR_ENIGMA2 = '/etc/enigma2/'
 DIR_TMP = '/tmp/'
