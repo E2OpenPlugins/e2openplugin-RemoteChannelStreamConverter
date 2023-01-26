@@ -1,0 +1,171 @@
+# Turkish translations for enigma package.
+# Copyright (C) 2020 THE enigma'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the enigma package.
+# dreamosat <info@dreamosat-forum.com>, 2023.
+# DreamOSat Forum <info@dreamosat-forum.com>, 2023.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: e2openplugin-RemoteChannelStreamConverter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-26 20:19+0300\n"
+"PO-Revision-Date: 2023-01-26 20:19+0300\n"
+"Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:52
+msgid "FTP Server Editor"
+msgstr "FTP Sunucu Düzenleyicisi"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:53
+msgid "Exit"
+msgstr "Çıkış"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:54
+msgid "OK"
+msgstr "TAMAM"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:97
+msgid "Keyboard"
+msgstr "Klavye"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:103
+msgid "Use address"
+msgstr "Kullanıcı URL'si"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:105
+msgid "Use IP"
+msgstr "Kullanıcı IP'si"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:111
+msgid "IP:"
+msgstr "IP:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:112
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:125
+msgid "Username:"
+msgstr "Kullanıcı Adı:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:113
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:126
+msgid "Password:"
+msgstr "Parola:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:114
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:127
+msgid "FTPport:"
+msgstr "FTP Bağlantı Noktası:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:115
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:128
+msgid "Passive:"
+msgstr "Pasif:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:116
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:129
+msgid "Telnetport:"
+msgstr "Telnet bağlantı noktası:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:124
+msgid "Adress:"
+msgstr "Adres:"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:144
+msgid "Enter address"
+msgstr "Adresi girin"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:147
+msgid "Enter username"
+msgstr "Kullanıcı adını girin"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:150
+msgid "Enter password"
+msgstr "Parolayı girin"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:190
+msgid "Select bouquets to convert"
+msgstr "Dönüştürülecek buketleri seçin"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:198
+msgid "Close"
+msgstr "Kapat"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:200
+msgid "Set server IP"
+msgstr "Sunucu IP'sini ayarla"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:202
+msgid "Select a remote server IP first"
+msgstr "Uzak sunucu için IP adresini seçin"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:234
+msgid "Testing remote connection"
+msgstr "Uzak bağlantı test ediliyor"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:243
+msgid "Connection to remote IP ok"
+msgstr "Uzak IP'ye bağlantı tamam"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:249
+msgid "Could not connect to remote IP"
+msgstr "Uzak IP'ye bağlanılamadı"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:252
+msgid "Downloading remote services"
+msgstr "Uzak hizmetleri indirme"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:261
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:306
+msgid "Download from remote failed"
+msgstr "Uzaktan indirme başarısız oldu"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:311
+#, python-format
+msgid "FTP reading bouquets %d of %d"
+msgstr "FTP okuma buketleri %d / %d"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:321
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:627
+msgid "Make your selection"
+msgstr "Seçimini yap"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:335
+msgid "Download"
+msgstr "İndir"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:336
+msgid "Invert"
+msgstr "Ters Çevir"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:368
+msgid "remote of"
+msgstr "uzaktan kapalı"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:471
+msgid "No bouquets selected"
+msgstr "Buket seçilmedi"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:603
+msgid "Checking for alternatives"
+msgstr "Alternatifleri kontrol etme"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:624
+#, python-format
+msgid "FTP reading alternatives %d of %d"
+msgstr "FTP okuma alternatifleri %d / %d"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:655
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:660
+msgid "Remote channel stream converter"
+msgstr "Uzak kanal akışı dönüştürücü"
+
+#: ../../../e2openplugin-RemoteChannelStreamConverter-master/plugin/plugin.py:660
+msgid "Convert remote channel list for streaming"
+msgstr "Akış için uzak kanal listesini dönüştürün"
